@@ -1,11 +1,11 @@
 package com.mid.project
 
-import android.util.Patterns
 import java.lang.ref.WeakReference
 
 class LoginPresenter(
     view: ILoginView,
-    private val model: LoginModel
+    private val model: ILoginModel,
+    private val emailValidator: (String) -> Boolean
 ) {
     private val viewReference = WeakReference<ILoginView>(view)
 
@@ -24,7 +24,7 @@ class LoginPresenter(
         }
     }
 
-    private fun validate(email: String) = Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    private fun validate(email: String) = emailValidator(email)
 
     private fun getView(): ILoginView? = viewReference.get()
 

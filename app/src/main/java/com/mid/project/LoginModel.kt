@@ -3,9 +3,9 @@ package com.mid.project
 import retrofit2.Call
 import retrofit2.Callback
 
-class LoginModel(private val loginAPI: ILoginAPI) {
+class LoginModel(private val loginAPI: ILoginAPI) : ILoginModel {
 
-    fun login(
+    override fun login(
         email: String,
         password: String,
         successAction: (String) -> Unit,
